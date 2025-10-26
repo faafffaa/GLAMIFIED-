@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 // Example: base: '/glamified-solutions/'
 export default defineConfig({
   plugins: [react()],
-  // base: '/YOUR_REPO_NAME/',
+  base: '/GLAMIFIED-/',  // ← your repo name EXACTLY
 })
