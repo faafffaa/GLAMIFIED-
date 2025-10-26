@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo } from "react"; 
-import { BrowserRouter, Routes, Route, Link, useLocation, Navigate } from "react-router-dom";
+import React, { useEffect, useMemo } from "react";
+import { HashRouter as BrowserRouter, Routes, Route, Link, useLocation, Navigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, CheckCircle2, Mail, Phone, MapPin, BadgeCheck } from "lucide-react";
 
@@ -10,7 +10,7 @@ try { document.documentElement.classList.remove("dark"); localStorage.setItem("t
   Glamified Solutions — Light Theme (React preview)
   • Pages: Home, Services, Projects, About, Recruitment, Contact
   • Minimal luxury design (light only), smooth animations, responsive
-  • WhatsApp floating button site‑wide, Contact uses mailto:
+  • WhatsApp floating button site-wide, Contact uses mailto:
 */
 
 // ===== Tiny self-tests
@@ -20,7 +20,7 @@ try { document.documentElement.classList.remove("dark"); localStorage.setItem("t
   console.assert(cx() === "", "cx empty case");
   console.assert(cx("x", "", "y") === "x y", "cx strips empty strings");
   const subject = encodeURIComponent("[Website] Test");
-  const body = encodeURIComponent("Name: A\\nEmail: a@b.com\\nPhone: 1\\nMessage: Hi");
+  const body = encodeURIComponent("Name: A\nEmail: a@b.com\nPhone: 1\nMessage: Hi");
   const mailto = `mailto:glamifiedsolutions@gmail.com?subject=${subject}&body=${body}`;
   console.assert(/^mailto:/.test(mailto), "mailto prefix");
 })();
@@ -44,7 +44,7 @@ function Logo({ className }) {
   );
 }
 
-// ===== Marquee (logos from reputable CDNs)
+// ===== Marquee
 function Marquee() {
   const logos = useMemo(() => ([
     { alt: 'Vite', src: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vitejs-logo.svg' },
@@ -84,7 +84,7 @@ const H2 = ({ children }) => (
 const CTA = ({ to, children }) => (
   <motion.div whileHover={{ y: -2, scale: 1.01 }} whileTap={{ scale: 0.98 }}>
     <Link to={to} className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 text-white px-6 h-11 font-medium hover:brightness-110 transition-colors">
-      {children} <ArrowRight className="w-4 h-4"/>
+      {children} <ArrowRight className="w-4 h-4" />
     </Link>
   </motion.div>
 );
@@ -192,7 +192,6 @@ function Home() {
               ))}
             </ul>
           </div>
-          {/* FIX: correct object-literal syntax for motion props */}
           <motion.div initial={{}} animate={{}}></motion.div>
           <motion.div initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} transition={{duration:.6, delay:.05}} className="lg:justify-self-end">
             <div className="rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
@@ -206,9 +205,9 @@ function Home() {
         <H2>What we do best</H2>
         <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            {t:"AI Engineering", d:"Applied ML, RAG pipelines, model evals, privacy‑minded deployment."},
-            {t:"Software Development", d:"Type‑safe web apps, mobile‑ready frontends, scalable APIs & DevOps."},
-            {t:"IT & Cloud Solutions", d:"Cloud architecture, cost optimization, observability, zero‑downtime releases."},
+            {t:"AI Engineering", d:"Applied ML, RAG pipelines, model evals, privacy-minded deployment."},
+            {t:"Software Development", d:"Type-safe web apps, mobile-ready frontends, scalable APIs & DevOps."},
+            {t:"IT & Cloud Solutions", d:"Cloud architecture, cost optimization, observability, zero-downtime releases."},
             {t:"Consulting & Strategy", d:"Roadmapping, UX audits, PMF experiments, growth SEO."},
           ].map((f,i)=> (
             <div key={i} className="rounded-2xl border border-slate-200 p-6">
@@ -234,12 +233,12 @@ function Services() {
   return (
     <Section>
       <H2>Services: AI, Product & IT—end to end</H2>
-      <p className="mt-3 text-slate-600 max-w-3xl">From ideation to launch and ongoing growth, we combine strategy, design, and engineering. Engagements are transparent, sprint‑based, and outcome‑driven.</p>
+      <p className="mt-3 text-slate-600 max-w-3xl">From ideation to launch and ongoing growth, we combine strategy, design, and engineering. Engagements are transparent, sprint-based, and outcome-driven.</p>
       <div className="mt-8 grid lg:grid-cols-2 gap-8">
         <div className="space-y-6">
           <ServiceCard title="AI Engineering" points={["RAG & vector search on your data","Model selection, evals & guardrails","LLM apps with observability & cost control"]} />
           <ServiceCard title="Software Development" points={["React/TypeScript frontends","Node/Edge APIs, GraphQL & REST","CI/CD, testing, performance budgets"]} />
-          <ServiceCard title="IT & Cloud Solutions" points={["Cloud architecture & security baselines","Infra as Code, auto‑scaling, CDN","Monitoring, alerting, SLOs"]} />
+          <ServiceCard title="IT & Cloud Solutions" points={["Cloud architecture & security baselines","Infra as Code, auto-scaling, CDN","Monitoring, alerting, SLOs"]} />
           <ServiceCard title="Consulting & Product Strategy" points={["UX research & design systems","Roadmaps, OKRs, and ROI models","SEO/IA audits & experimentation"]} />
         </div>
         <div className="rounded-3xl overflow-hidden border border-slate-200">
@@ -263,9 +262,9 @@ function ServiceCard({ title, points }){
 
 function Projects(){
   const cases = [
-    { slug: 'atlas-insights', client: 'Atlas Insights', title: 'RAG research assistant for 50k+ PDFs', summary: 'Retrieval‑augmented QA with hybrid search and deterministic citations—reducing research time by 63%.', stats: ['-63% research time','Grounded answers with sources','Cost‑optimized inference'], img: 'https://images.unsplash.com/photo-1587613865763-4b8b0b1a6a83?q=80&w=1600&auto=format&fit=crop' },
-    { slug: 'vela-commerce', client: 'Vela Commerce', title: 'Headless storefront with AI‑led merchandising', summary: 'Design system + personalization that adapts collections in real time based on intent.', stats: ['+21% add-to-cart','1.7s mobile LCP','0 CLS transitions'], img: 'https://images.unsplash.com/photo-1520975922284-9c5c0d7c3ffe?q=80&w=1600&auto=format&fit=crop' },
-    { slug: 'meridian-fintech', client: 'Meridian Fintech', title: 'Secure onboarding for a fintech scaleup', summary: 'KYC flow redesign, AA accessibility, and event‑driven microservices with audit trails.', stats: ['-35% dev time','99.95% uptime','AA contrast throughout'], img: 'https://images.unsplash.com/photo-1559523182-a284c3fb7ffd?q=80&w=1600&auto=format&fit=crop' },
+    { slug: 'atlas-insights', client: 'Atlas Insights', title: 'RAG research assistant for 50k+ PDFs', summary: 'Retrieval-augmented QA with hybrid search and deterministic citations—reducing research time by 63%.', stats: ['-63% research time','Grounded answers with sources','Cost-optimized inference'], img: 'https://images.unsplash.com/photo-1587613865763-4b8b0b1a6a83?q=80&w=1600&auto=format&fit=crop' },
+    { slug: 'vela-commerce', client: 'Vela Commerce', title: 'Headless storefront with AI-led merchandising', summary: 'Design system + personalization that adapts collections in real time based on intent.', stats: ['+21% add-to-cart','1.7s mobile LCP','0 CLS transitions'], img: 'https://images.unsplash.com/photo-1520975922284-9c5c0d7c3ffe?q=80&w=1600&auto=format&fit=crop' },
+    { slug: 'meridian-fintech', client: 'Meridian Fintech', title: 'Secure onboarding for a fintech scaleup', summary: 'KYC flow redesign, AA accessibility, and event-driven microservices with audit trails.', stats: ['-35% dev time','99.95% uptime','AA contrast throughout'], img: 'https://images.unsplash.com/photo-1559523182-a284c3fb7ffd?q=80&w=1600&auto=format&fit=crop' },
   ];
   return (
     <Section>
@@ -297,14 +296,14 @@ function About(){
   const values = [
     { t: 'Clarity over clutter', d: 'We remove friction until only the essential remains.' },
     { t: 'Integrity in delivery', d: 'Transparent scopes, predictable sprints, measurable outcomes.' },
-    { t: 'Accessibility first', d: 'Inclusive design as a non‑negotiable baseline.' },
+    { t: 'Accessibility first', d: 'Inclusive design as a non-negotiable baseline.' },
   ];
   return (
     <Section>
       <H2>About Glamified Solutions</H2>
       <div className="mt-8 grid md:grid-cols-2 gap-8 items-start">
         <div>
-          <p className="text-slate-600">Our mission is to elevate digital products through restraint and rigor—products that look calm and feel instant. We operate as a senior, cross‑functional pod that plugs into your roadmap and ships meaningful increments.</p>
+          <p className="text-slate-600">Our mission is to elevate digital products through restraint and rigor—products that look calm and feel instant. We operate as a senior, cross-functional pod that plugs into your roadmap and ships meaningful increments.</p>
           <p className="text-slate-600 mt-4">Leadership has delivered platforms for commerce, fintech, hospitality, and SaaS. We favor open standards, type safety, and observability.</p>
           <div className="mt-6 grid sm:grid-cols-3 gap-4">
             {values.map((v,i)=> (
@@ -337,7 +336,7 @@ function Recruitment(){
         <div className="rounded-3xl border border-slate-200 p-6">
           <div className="font-semibold text-lg">For Employers</div>
           <ul className="mt-3 space-y-2 text-sm text-slate-600">
-            {['Role scoping & scorecards','2‑round technical screening','Onsite‑ready takehomes (optional)','Offer support & onboarding'].map((b,i)=>(
+            {['Role scoping & scorecards','2-round technical screening','Onsite-ready takehomes (optional)','Offer support & onboarding'].map((b,i)=>(
               <li key={i} className="flex gap-2"><CheckCircle2 className="w-4 h-4 mt-0.5"/> {b}</li>
             ))}
           </ul>
@@ -369,7 +368,7 @@ function Contact(){
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const subject = encodeURIComponent(`[Website] ${fd.get('name') || 'Inquiry'}`);
-    const body = encodeURIComponent(`Name: ${fd.get('name')}\\nEmail: ${fd.get('email')}\\nPhone: ${fd.get('phone')}\\nMessage: ${fd.get('message')}`);
+    const body = encodeURIComponent(`Name: ${fd.get('name')}\nEmail: ${fd.get('email')}\nPhone: ${fd.get('phone')}\nMessage: ${fd.get('message')}`);
     window.location.href = `mailto:glamifiedsolutions@gmail.com?subject=${subject}&body=${body}`;
   };
   return (
